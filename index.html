@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Autokirk OS – Business Blueprint Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #050505;
+      color: #f5f5f5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 16px;
+    }
+    header {
+      padding: 12px 0 24px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo-mark {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      border: 1px solid #d4af37;
+      box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+    }
+    .badge {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(212, 175, 55, 0.6);
+      color: #d4af37;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    h1 {
+      font-size: 32px;
+      margin: 8px 0 8px;
+    }
+    .accent {
+      color: #d4af37;
+    }
+    .subhead {
+      max-width: 520px;
+      color: #c0c0c0;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 32px;
+      margin-top: 28px;
+    }
+    @media (max-width: 800px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    .card {
+      border-radius: 18px;
+      padding: 18px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: radial-gradient(circle at top left, rgba(212, 175, 55, 0.18), transparent 55%);
+      backdrop-filter: blur(6px);
+    }
+    .card h2 {
+      font-size: 16px;
+      margin: 0 0 8px;
+    }
+    label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #a0a0a0;
+      margin-bottom: 6px;
+    }
+    textarea {
+      width: 100%;
+      min-height: 120px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(0, 0, 0, 0.6);
+      color: #f5f5f5;
+      padding: 10px 12px;
+      font-size: 13px;
+      resize: vertical;
+    }
+    textarea:focus {
+      outline: 1px solid #d4af37;
+      box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.7);
+    }
+    button {
+      margin-top: 10px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #d4af37, #f5e39a);
+      color: #000;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    button:disabled {
+      opacity: 0.6;
+      cursor: default;
+    }
+    .status {
+      font-size: 12px;
+      margin-top: 6px;
+      min-height: 16px;
+      color: #a0a0a0;
+    }
+    .status.error {
+      color: #ff6b6b;
+    }
+    pre {
+      margin: 0;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      font-size: 11px;
+      max-height: 260px;
+      overflow: auto;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    footer {
+      margin-top: 32px;
+      font-size: 11px;
+      color: #777;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="logo">
+        <div class="logo-mark"></div>
+        AUTOKIRK OS
+      </div>
+      <div class="badge">MCP · AIS · LIVE</div>
+    </header>
+
+    <section>
+      <h1>The <span class="accent">Founder Operating Format</span></h1>
+      <p class="subhead">
+        Autokirk transforms your business idea into a machine-readable operating blueprint that AI can execute.
+        Describe your business below and see the structure of an AI-native company.
+      </p>
+
+      <div class="layout">
+        <div class="card">
+          <h2>1. Describe your business</h2>
+          <p style="font-size: 12px; color: #b0b0b0; margin-top: 0;">
+            Two to four sentences is enough. Autokirk will infer your core operations and build a blueprint.
+          </p>
+          <label for="description">Business description</label>
+          <textarea id="description" placeholder="Example: I run a mobile auto detailing business in Florida and want to automate bookings, reminders, and follow-ups so I can focus on the work."></textarea>
+          <button id="generateBtn">Generate AIS Blueprint</button>
+          <div id="status" class="status"></div>
+        </div>
+
+        <div class="card">
+          <h2>2. Your Autokirk Blueprint</h2>
+          <p style="font-size: 11px; color: #b0b0b0; margin-top: 0;">
+            This is a simplified Autokirk Interaction Standard (AIS) artifact – the structure of your business as an operating system.
+          </p>
+          <pre id="output">// Your blueprint will appear here.</pre>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Kirk Digital Holdings LLC · Autokirk Systems LLC · Autokirk IP Holdings LLC
+    </footer>
+  </div>
+
+  <script>
+    // After deploying your MCP backend on Render,
+    // replace YOUR-RENDER-URL below with your actual Render URL.
+    const MCP_URL = "https://YOUR-RENDER-URL.onrender.com/mcp/generate-ais-blueprint";
+
+    const descEl = document.getElementById("description");
+    const btnEl = document.getElementById("generateBtn");
+    const statusEl = document.getElementById("status");
+    const outputEl = document.getElementById("output");
+
+    async function generateBlueprint() {
+      const description = descEl.value.trim();
+      if (!description) {
+        statusEl.textContent = "Please describe your business first.";
+        statusEl.classList.add("error");
+        return;
+      }
+
+      statusEl.textContent = "Generating blueprint via Autokirk MCP…";
+      statusEl.classList.remove("error");
+      btnEl.disabled = true;
+      outputEl.textContent = "// Working…";
+
+      try {
+        const res = await fetch(MCP_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ description })
+        });
+
+        if (!res.ok) {
+          const text = await res.text();
+          statusEl.textContent = "Error: " + res.status + " – " + text;
+          statusEl.classList.add("error");
+          outputEl.textContent = "// No blueprint generated.";
+          return;
+        }
+
+        const data = await res.json();
+        statusEl.textContent = "Blueprint generated.";
+        statusEl.classList.remove("error");
+        outputEl.textContent = JSON.stringify(data.output || data, null, 2);
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = "Network or server error.";
+        statusEl.classList.add("error");
+        outputEl.textContent = "// No blueprint generated.";
+      } finally {
+        btnEl.disabled = false;
+      }
+    }
+
+    btnEl.addEventListener("click", generateBlueprint);
+  </script>
+</body>
+</html>
